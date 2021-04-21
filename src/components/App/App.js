@@ -39,6 +39,23 @@ class App extends React.Component {
     };
   }
 
+  addTrack(track) {
+    let tracks = this.state.playlistTracks;
+
+    if (
+      // checks to see if track is already in playlist
+      this.state.playlistTracks.find((savedTrack) => savedTrack.id === track.id)
+    ) {
+      return;
+    }
+
+    tracks.push(track);
+
+    this.setState = {
+      playlistTracks: tracks,
+    };
+  }
+
   render() {
     return (
       <div>
