@@ -5,9 +5,9 @@ class Track extends React.Component {
     return (
       <div class="Track">
         <div class="Track-information">
-          <h3>{/* track name */}</h3>
+          <h3>{this.props.track.name}</h3>
           <p>
-            {/* artist name */} | {/* album name */}
+            {this.props.track.artist} | {this.props.track.album}
           </p>
         </div>
         <button class="Track-action">{/* + or - */}</button>
