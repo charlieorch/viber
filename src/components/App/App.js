@@ -1,4 +1,6 @@
 import "./App.css";
+import React from "react";
+import SearchBar from "../SearchBar/SearchBar";
 
 function App() {
   return (
@@ -7,7 +9,7 @@ function App() {
         Vi<span class="highlight">b</span>er
       </h1>
       <div class="App">
-        {/* Add a SearchBar component */}
+        <SearchBar />
         <div class="App-playlist">
           {/* Add a SearchResults component */}
           {/* Add a Playlist component */}
