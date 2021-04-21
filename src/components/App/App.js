@@ -46,16 +46,16 @@ class App extends React.Component {
 
     if (
       // checks to see if track is already in playlist
-      this.state.playlistTracks.find((savedTrack) => savedTrack.id === track.id)
+      this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)
     ) {
       return;
     }
 
     tracks.push(track);
 
-    this.setState = {
+    this.setState({
       playlistTracks: tracks,
-    };
+    });
   }
 
   render() {
