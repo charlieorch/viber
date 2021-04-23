@@ -42,6 +42,7 @@ class App extends React.Component {
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
+    this.search = this.search.bind(this);
   }
 
   addTrack(track) {
@@ -80,6 +81,10 @@ class App extends React.Component {
     const trackURIs = this.state.playlistTracks.map(track => track.id);
   }
 
+  search(term) {
+    console.log(term);
+  }
+
   render() {
     return (
       <div>
@@ -87,7 +92,7 @@ class App extends React.Component {
           V i <span class="highlight">b</span> e r
         </h1>
         <div class="App">
-          <SearchBar />
+          <SearchBar onSearch={this.search} />
           <div class="App-playlist">
             <SearchResults
               searchResults={this.state.searchResults}
