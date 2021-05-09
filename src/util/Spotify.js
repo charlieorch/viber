@@ -24,6 +24,35 @@ const Spotify = {
       window.location = accessUrl;
     }
   },
+
+  async search(term) {
+    const accessToken = Spotify.getAccessToken(); //acquiring access token
+
+    // fetching input term from the url with additional Authorization header
+    const response = await fetch(
+      `https://api.spotify.com/v1/search?type=track&q=${term}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    // converting response to json after successfully fetching
+    const jsonResponse = await response.json();
+    // if there are no tracks, return an empty array of tracks
+    if (!jsonResponse.tracks) {
+      return [];
+    }
+    // if there are tracks, map the array and return the object containing pair key value of the tracks
+    return jsonResponse.tracks.items.map(track => ({
+      id: track.id,
+      name: track.name,
+      artist: track.artists[0].name,
+      album: track.album.name,
+      uri: track.uri,
+    }));
+  },
 };
 
 export default Spotify;
