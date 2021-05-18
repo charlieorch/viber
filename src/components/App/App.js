@@ -9,34 +9,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [
-        { name: "Something", artist: "Diplo", album: "Album Something", id: 1 },
-        {
-          name: "Random",
-          artist: "Justin Bieber",
-          album: "Try Something",
-          id: 2,
-        },
-        { name: "Oof", artist: "Skrillex", album: "Rave", id: 3 },
-      ],
+      searchResults: [],
 
-      playlistName: "Charlie's Playlist",
+      playlistName: "New Playlist",
 
-      playlistTracks: [
-        {
-          name: "Something Different",
-          artist: "Illenium",
-          album: "Random Album",
-          id: 4,
-        },
-        {
-          name: "Random",
-          artist: "Mitch",
-          album: "Try Something",
-          id: 5,
-        },
-        { name: "Megaoof", artist: "Someone", album: "Rave", id: 6 },
-      ],
+      playlistTracks: [],
     };
 
     this.addTrack = this.addTrack.bind(this);
@@ -80,6 +57,12 @@ class App extends React.Component {
 
   savePlaylist() {
     const trackURIs = this.state.playlistTracks.map(track => track.id);
+    Spotify.savePlaylist(this.state.playlistName, trackURIs).then(() => {
+      this.setState({
+        playlistName: "New Playlist",
+        playlistTracks: [],
+      });
+    });
   }
 
   search(term) {
@@ -88,15 +71,21 @@ class App extends React.Component {
     });
   }
 
+  componentDidMount() {
+    window.addEventListener("load", () => {
+      Spotify.getAccessToken();
+    });
+  }
+
   render() {
     return (
       <div>
         <h1>
-          V i <span class="highlight">b</span> e r
+          V i <span className="highlight">b</span> e r
         </h1>
-        <div class="App">
+        <div className="App">
           <SearchBar onSearch={this.search} />
-          <div class="App-playlist">
+          <div className="App-playlist">
             <SearchResults
               searchResults={this.state.searchResults}
               onAdd={this.addTrack}
@@ -115,5 +104,4 @@ class App extends React.Component {
   }
 }
 
-// testing git
 export default App;
