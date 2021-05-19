@@ -1,6 +1,6 @@
 let accessToken;
-let clientID = "8f15d92144ac450f9939d82993ad0d70";
-let redirectURI = "http://localhost:3000/";
+const clientID = "8f15d92144ac450f9939d82993ad0d70";
+const redirectURI = "http://localhost:3000/";
 
 const Spotify = {
   getAccessToken() {
@@ -88,12 +88,6 @@ const Spotify = {
           }
         );
       });
-  },
-
-  componentDidMount() {
-    window.addEventListener("load", () => {
-      Spotify.getAccessToken();
-    });
   },
 };
 
