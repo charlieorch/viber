@@ -1,6 +1,6 @@
 let accessToken;
 const clientID = `${process.env.REACT_APP_SPOTIFY_CLIENT_ID}`;
-const redirectURI = "https://viber-by-charlie.netlify.app";
+const redirectURI = "https://viber-by-charlie.netlify.app/";
 
 const Spotify = {
   getAccessToken() {
